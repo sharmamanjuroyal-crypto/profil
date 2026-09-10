@@ -1,0 +1,382 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Govind Sharma's profile card." />
+  <title>Govind Sharma — Web Designer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #172029;
+      --muted: #68737e;
+      --pink: #ff4f87;
+      --lime: #ccff51;
+      --line: rgba(23, 32, 41, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow: hidden;
+      background: #e8e4dc;
+      color: var(--ink);
+      font-family: Manrope, system-ui, sans-serif;
+    }
+
+    .orb {
+      position: fixed;
+      width: 46vmax;
+      height: 46vmax;
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .orb.one {
+      background: #d2ff61;
+      top: -30vmax;
+      left: -11vmax;
+    }
+
+    .orb.two {
+      background: #f9a9c1;
+      bottom: -35vmax;
+      right: -13vmax;
+    }
+
+    main {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      position: relative;
+    }
+
+    .card {
+      width: min(100%, 880px);
+      min-height: 540px;
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      background: rgba(249, 248, 244, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 28px 80px rgba(50, 45, 35, 0.17);
+      backdrop-filter: blur(14px);
+    }
+
+    .identity,
+    .details {
+      padding: 46px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .identity {
+      border-right: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      font: 500 11px/1 "DM Mono", monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .portrait {
+      margin: 31px 0 24px;
+      width: 126px;
+      height: 126px;
+      position: relative;
+      border-radius: 50%;
+      background: var(--ink);
+      overflow: hidden;
+      border: 7px solid white;
+      box-shadow: 0 7px 18px rgba(23, 32, 41, 0.18);
+    }
+
+    .portrait::before {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #ffbd9d;
+      top: 22px;
+      left: 28px;
+    }
+
+    .portrait::after {
+      content: "";
+      position: absolute;
+      width: 95px;
+      height: 72px;
+      border-radius: 52px 52px 0 0;
+      background: var(--pink);
+      bottom: -25px;
+      left: 9px;
+      box-shadow: 0 -67px 0 -21px #2b2026;
+    }
+
+    h1 {
+      margin: 0;
+      letter-spacing: -0.065em;
+      font-size: clamp(43px, 5vw, 64px);
+      line-height: 0.94;
+    }
+
+    .role {
+      margin: 14px 0 22px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font: 500 12px "DM Mono", monospace;
+    }
+
+    .status i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #77a900;
+      box-shadow: 0 0 0 5px rgba(119, 169, 0, 0.13);
+    }
+
+    .signature {
+      margin-top: auto;
+      font: 500 11px "DM Mono", monospace;
+      color: var(--muted);
+    }
+
+    .intro {
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      line-height: 1.42;
+      margin: 31px 0;
+      max-width: 320px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 31px;
+    }
+
+    .tags span {
+      border: 1px solid var(--line);
+      border-radius: 50px;
+      padding: 8px 12px;
+      font: 500 11px "DM Mono", monospace;
+    }
+
+    .links {
+      border-top: 1px solid var(--line);
+    }
+
+    .link {
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: padding 0.2s, color 0.2s;
+    }
+
+    .link:hover {
+      padding-left: 7px;
+      color: var(--pink);
+    }
+
+    .arrow {
+      font: 500 18px "DM Mono", monospace;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 28px;
+    }
+
+    button {
+      cursor: pointer;
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 16px;
+      font: 700 12px Manrope, sans-serif;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(23, 32, 41, 0.15);
+    }
+
+    .primary {
+      flex: 1;
+      background: var(--ink);
+      color: white;
+    }
+
+    .secondary {
+      width: 48px;
+      padding: 0;
+      font-size: 18px;
+      background: var(--lime);
+      color: var(--ink);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 26px;
+      left: 50%;
+      transform: translate(-50%, 100px);
+      padding: 12px 18px;
+      border-radius: 10px;
+      background: var(--ink);
+      color: white;
+      font: 500 12px "DM Mono", monospace;
+      transition: transform 0.3s;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 650px) {
+      body {
+        overflow: auto;
+      }
+
+      .card {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+      }
+
+      .identity,
+      .details {
+        padding: 32px;
+      }
+
+      .identity {
+        min-height: 410px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .details {
+        min-height: 420px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <main>
+    <article class="card">
+      <section class="identity">
+        <div class="eyebrow">Independent creative / 2026</div>
+
+        <div class="portrait" aria-label="Illustrated portrait of Govind"></div>
+
+        <h1>Govind<br>Sharma.</h1>
+        <p class="role">Web designer &amp; developer</p>
+
+        <div class="status">
+          <i></i>
+          Available for select projects
+        </div>
+
+        <div class="signature">BASED IN PALWAL, IN</div>
+      </section>
+
+      <section class="details">
+        <div class="eyebrow">A little hello</div>
+
+        <p class="intro">
+          I make expressive identities and digital experiences for people
+          building things with purpose.
+        </p>
+
+        <div class="tags">
+          <span>WEB DESIGN</span>
+          <span>DEVELOPMENT</span>
+          <span>UI DESIGN</span>
+        </div>
+
+        <nav class="links" aria-label="Social links">
+          <a class="link" href="#work">
+            Selected work <b class="arrow">↗</b>
+          </a>
+
+          <a class="link" href="mailto:sharmamanjuroyal@gmail.com">
+            sharmamanjuroyal@gmail.com <b class="arrow">↗</b>
+          </a>
+
+          <a class="link" href="#instagram">
+            Instagram <b class="arrow">↗</b>
+          </a>
+        </nav>
+
+        <div class="actions">
+          <button class="primary" id="contact">Start a project</button>
+          <button class="secondary" id="copy" aria-label="Copy email">⧉</button>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <div class="toast" id="toast">Email copied to clipboard</div>
+
+  <script>
+    const email = "sharmamanjuroyal@gmail.com";
+    const toast = document.getElementById("toast");
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+    document.getElementById("copy").onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(email);
+        showToast("Email copied to clipboard");
+      } catch {
+        showToast(email);
+      }
+    };
+
+    document.getElementById("contact").onclick = () => {
+      window.location.href =
+        "mailto:" + email + "?subject=Project%20enquiry";
+    };
+  </script>
+</body>
